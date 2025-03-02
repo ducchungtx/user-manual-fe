@@ -1,33 +1,46 @@
-"use client";
-
-import React, { useEffect, useState } from 'react';
+import { getAllBrands } from '@/lib/api';
 import Layout from '../components/Layout';
-import { Card } from '@/components/ui/card';
-import { Brand } from '@/interface/IBrand';
+import { Metadata } from 'next';
+import BrandListClient from '../components/BrandListClient';
 
-const HomePage = () => {
+export const metadata: Metadata = {
+  title: 'User Manuals - Browse Brands',
+  description: 'Find user manuals for your favorite brands and products.',
+  openGraph: {
+    title: 'User Manuals - Browse Brands',
+    description: 'Find user manuals for your favorite brands and products.'
+  }
+};
 
-  const [brands, setBrands] = useState<Brand[]>([]);
+export default async function HomePage() {
+  let brands = [];
+  let error = null;
 
-  useEffect(() => {
-    fetch('/api/brands')
-      .then(response => response.json())
-      .then(data => setBrands(data))
-      .catch(error => console.error('Error fetching brands:', error));
-  }, []);
+  try {
+    brands = await getAllBrands();
+  } catch (err) {
+    error = 'Failed to load brands';
+    console.error('Error:', err);
+  }
+
+  if (error) {
+    return (
+      <Layout>
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center text-red-500">{error}</div>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
-      <h2>Brands</h2>
-      <div>
-        {brands.map(brand => (
-          <Card key={brand.id}>
-            <h3>{brand.name}</h3>
-          </Card>
-        ))}
+      <div className="container mx-auto px-4 py-8">
+        <h2 className="text-2xl font-bold mb-6">Browse by Brand</h2>
+
+        {/* Client side component for interactive filtering */}
+        <BrandListClient initialBrands={brands} />
       </div>
     </Layout>
   );
-};
-
-export default HomePage;
+}
