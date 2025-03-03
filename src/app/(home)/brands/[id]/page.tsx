@@ -1,8 +1,8 @@
 import React from 'react';
 import { getBrandById } from '@/lib/api';
 import { BrandDetailResponse } from '@/types';
-import Link from 'next/link';
 import Layout from '@/components/Layout';
+import { FiFileText, FiDownload } from 'react-icons/fi';
 
 interface BrandInfoProps {
   params: {
@@ -33,14 +33,24 @@ async function BrandInfo({ params }: BrandInfoProps) {
               {manuals.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {manuals.map(manual => (
-                    <div key={manual.id} className="border rounded-lg p-4 hover:bg-gray-50">
-                      <h3 className="text-lg font-medium text-gray-800">{manual.model}</h3>
+                    <div key={manual.id} className="border rounded-lg p-4 hover:bg-gray-50 transition-all">
+                      <h3 className="text-lg font-medium text-gray-800 flex items-center">
+                        <FiFileText className="mr-2" /> {manual.model}
+                      </h3>
                       <p className="text-gray-600 mb-3">{manual.description}</p>
                       <p className="text-sm text-gray-500 mb-3">Last updated: {new Date(manual.updatedAt).toLocaleDateString()}</p>
-                      {manual.documentUrl && (
-                        <Link href={manual.documentUrl} className="text-blue-600 hover:underline" target="_blank">
-                          Download Manual
-                        </Link>
+                      {manual.files && manual.files.length > 0 && (
+                        <div>
+                          <h4 className="text-sm font-semibold text-gray-800 mb-2">Downloadable Files</h4>
+                          <ul>
+                            {manual.files.map(file => (
+                              <li key={file.id} className="flex items-center">
+                                <FiDownload className="mr-2" />
+                                <a href={file.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">{file.name}</a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       )}
                     </div>
                   ))}

@@ -36,7 +36,7 @@ export async function getPaginatedBrands(page = 1, limit = 20) {
 
 export async function getBrandById(id: string) {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/brands/${id}?populate=*`, {
+    const response = await fetch(`${API_BASE_URL}/api/brands/${id}?populate[manuals][populate][files][fields][0]=name&populate[manuals][populate][files][fields][1]=url`, {
       cache: 'no-store'
     });
 

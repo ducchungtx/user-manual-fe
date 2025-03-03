@@ -33,6 +33,12 @@ export interface BrandDetailResponse {
       updatedAt: string;
       publishedAt: string;
       documentUrl?: string;
+      files: Array<{
+        id: number;
+        documentId: string;
+        name: string;
+        url: string;
+      }>;
     }>
   },
 }
