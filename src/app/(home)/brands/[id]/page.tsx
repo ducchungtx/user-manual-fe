@@ -46,7 +46,12 @@ async function BrandInfo({ params }: BrandInfoProps) {
                             {manual.files.map(file => (
                               <li key={file.id} className="flex items-center">
                                 <FiDownload className="mr-2" />
-                                <a href={file.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">{file.name}</a>
+                                <a
+                                  href={`/api/download?url=${encodeURIComponent(file.url)}&name=${encodeURIComponent(file.name)}`}
+                                  className="text-blue-500 hover:underline"
+                                >
+                                  {file.name}
+                                </a>
                               </li>
                             ))}
                           </ul>

@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.STRAPI_BASE_URL || 'http://localhost:1337';
+export const API_BASE_URL = process.env.STRAPI_BASE_URL || 'http://localhost:1337';
 
 export async function getAllBrands() {
   try {
