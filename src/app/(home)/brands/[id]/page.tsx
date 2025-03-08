@@ -19,7 +19,7 @@ function isPdfFile(filename: string): boolean {
 async function BrandInfo({ params }: BrandInfoProps) {
   try {
     // Extract the actual ID from the URL parameter, which might contain additional characters
-    const brandId = params.id;
+    const brandId = await params.id;
     const brandData = await getBrandById(brandId) as BrandDetailResponse;
     const brand = brandData.data;
     const manuals = brand.manuals || [];
