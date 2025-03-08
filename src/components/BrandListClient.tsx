@@ -55,15 +55,15 @@ export default function BrandListClient({ initialBrands }: BrandListClientProps)
       <div className="mb-4">
         {(searchQuery || selectedLetter) && (
           <div className="flex items-center mb-2">
-            <span className="text-sm text-gray-600 mr-2">Active filters:</span>
+            <span className="text-sm text-gray-600 dark:text-gray-300 mr-2">Active filters:</span>
             <div className="flex flex-wrap gap-2">
               {searchQuery && (
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
+                <span className="px-3 py-1 bg-blue-100 dark:bg-blue-800/30 text-blue-800 dark:text-blue-200 text-sm rounded-full">
                   Search: {searchQuery}
                 </span>
               )}
               {selectedLetter && (
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
+                <span className="px-3 py-1 bg-blue-100 dark:bg-blue-800/30 text-blue-800 dark:text-blue-200 text-sm rounded-full">
                   Letter: {selectedLetter}
                 </span>
               )}
@@ -72,14 +72,14 @@ export default function BrandListClient({ initialBrands }: BrandListClientProps)
                   setSearchQuery('');
                   setSelectedLetter(null);
                 }}
-                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-sm rounded-full"
+                className="px-3 py-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-sm rounded-full dark:text-gray-200"
               >
                 Clear all
               </button>
             </div>
           </div>
         )}
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-600 dark:text-gray-300">
           {filteredBrands.length} {filteredBrands.length === 1 ? 'brand' : 'brands'} found
         </p>
       </div>
@@ -91,26 +91,26 @@ export default function BrandListClient({ initialBrands }: BrandListClientProps)
             <Link
               key={brand.id}
               href={`/brands/${brand.documentId}`}
-              className="flex flex-col items-center p-4 border rounded-lg hover:shadow-md transition-shadow"
+              className="flex flex-col items-center p-4 border dark:border-gray-700 rounded-lg hover:shadow-md dark:hover:shadow-gray-800 transition-shadow bg-white dark:bg-gray-800"
             >
-              <div className="w-16 h-16 bg-gray-100 flex items-center justify-center mb-2 rounded-full">
-                <span className="text-2xl font-bold text-gray-400">
+              <div className="w-16 h-16 bg-gray-100 dark:bg-gray-700 flex items-center justify-center mb-2 rounded-full">
+                <span className="text-2xl font-bold text-gray-400 dark:text-gray-300">
                   {brand.name.charAt(0)}
                 </span>
               </div>
-              <span className="text-center font-medium">{brand.name}</span>
+              <span className="text-center font-medium dark:text-gray-200">{brand.name}</span>
             </Link>
           ))}
         </div>
       ) : (
         <div className="text-center py-10">
-          <p className="text-gray-500">No brands found matching your filters.</p>
+          <p className="text-gray-500 dark:text-gray-400">No brands found matching your filters.</p>
           <button
             onClick={() => {
               setSearchQuery('');
               setSelectedLetter(null);
             }}
-            className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white rounded"
           >
             Clear filters
           </button>

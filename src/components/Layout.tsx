@@ -1,6 +1,9 @@
 import { Metadata } from 'next';
 import React from 'react';
 import { ReactNode } from 'react';
+import { ThemeProvider } from '@/contexts/ThemeContext';
+
+
 import Header from './Header';
 import Footer from './Footer';
 
@@ -15,11 +18,14 @@ export const metadata: Metadata = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      <main className="flex-grow">{children}</main>
-      <Footer />
-    </div>
+    <ThemeProvider>
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-grow">{children}</main>
+        <Footer />
+      </div>
+    </ThemeProvider>
+
   );
 };
 

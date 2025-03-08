@@ -25,47 +25,47 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
+        <label htmlFor="name" className="block text-sm font-medium mb-2 dark:text-gray-200">Name</label>
         <input
           type="text"
           id="name"
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required
         />
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
+        <label htmlFor="email" className="block text-sm font-medium mb-2 dark:text-gray-200">Email</label>
         <input
           type="email"
           id="email"
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required
         />
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
+        <label htmlFor="message" className="block text-sm font-medium mb-2 dark:text-gray-200">Message</label>
         <textarea
           id="message"
           name="message"
           value={formData.message}
           onChange={handleChange}
           rows={5}
-          className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required
         />
       </div>
 
       <button
         type="submit"
-        className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors"
+        className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors dark:bg-blue-600 dark:hover:bg-blue-700"
       >
         Send Message
       </button>

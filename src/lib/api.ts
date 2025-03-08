@@ -66,3 +66,21 @@ export async function getManuals() {
     throw error;
   }
 }
+
+export async function getFileById(fileId: string) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/upload/files/${fileId}`, {
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching file:', error);
+    throw error;
+  }
+}
